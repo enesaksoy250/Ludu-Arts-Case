@@ -150,6 +150,31 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 
 ---
 
+## Prompt 6: Hold Interaction (Sandık) Mekaniği
+
+**Araç:** Gemini 3 Pro
+**Tarih/Saat:** 2026-01-30 18:00
+
+**Prompt:**
+ "Hold" (basılı tutma) etkileşim türünü sisteme entegre etmemiz gerekiyor.
+  1. `InteractionType` enum'ı (Instant/Hold) oluştur.
+  2. `BaseInteractable` sınıfına `HoldDuration` ve `Type` ekle.
+  3. `InteractionDetector` scriptini, basılı tutma süresini sayacak ve dolduğunda etkileşimi tetikleyecek şekilde güncelle.
+  4. Bu sistemi kullanan bir `InteractableChest` scripti yaz (Açıldıktan sonra tekrar kapanmasın).
+
+**Alınan Cevap (Özet):**
+> Asistan, Core sistemde gerekli refactor işlemlerini yaparak `InteractionDetector`'a zamanlayıcı (timer) mantığı ekledi. Sandık (Chest) için basılı tutarak açılan ve tek seferlik çalışan bir script sağladı. Ayrıca UI Progress Bar için gerekli event altyapısını kurdu.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Core sistemi "Instant" ve "Hold" olarak ikiye ayırarak, case'in en önemli gereksinimlerinden birini esnek bir yapıda çözdüm.
+
+---
+
 ## Genel Değerlendirme
 
 ### LLM'in En Çok Yardımcı Olduğu Alanlar

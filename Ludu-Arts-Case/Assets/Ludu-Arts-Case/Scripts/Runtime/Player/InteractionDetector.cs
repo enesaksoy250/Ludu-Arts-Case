@@ -1,17 +1,14 @@
 using System;
 using UnityEngine;
 using LuduArtsCase.Runtime.Core;
+using LuduArtsCase.Runtime.Interactables; // BaseInteractable erişimi için
 
 namespace LuduArtsCase.Runtime.Player
 {
-    /// <summary>
-    /// Oyuncunun bakış yönündeki etkileşilebilir nesneleri tespit eden sınıf.
-    /// </summary>
     public class InteractionDetector : MonoBehaviour
     {
         #region Fields
 
-        // Serialized private instance fields (m_ prefix kuralı)
         [Header("Detection Settings")]
         [SerializeField] private float m_InteractionRange = 3.0f;
         [SerializeField] private LayerMask m_InteractableLayer;
@@ -20,19 +17,20 @@ namespace LuduArtsCase.Runtime.Player
         [Header("Debug")]
         [SerializeField] private bool m_ShowDebugGizmos = true;
 
-        // Non-serialized private instance fields
-        private IInteractable m_CurrentInteractable;
+        // State variables
+        private BaseInteractable m_CurrentInteractable; // IInteractable yerine Base cast ediyoruz
         private RaycastHit m_HitInfo;
+        private float m_CurrentHoldTime = 0f;
+        private bool m_IsHolding = false;
 
         #endregion
 
         #region Events
 
-        /// <summary>
-        /// Etkileşilebilir bir nesne bulunduğunda veya kaybedildiğinde tetiklenir.
-        /// UI güncellemesi için kullanılır.
-        /// </summary>
         public event Action<IInteractable> OnInteractableChanged;
+
+        // UI Progress Bar için yeni event (0 ile 1 arası değer döner)
+        public event Action<float> OnInteractionProgress;
 
         #endregion
 
@@ -57,14 +55,10 @@ namespace LuduArtsCase.Runtime.Player
 
         #region Methods
 
-        /// <summary>
-        /// Raycast atarak karşıdaki IInteractable nesnesini tespit eder.
-        /// </summary>
         private void DetectInteractable()
         {
             if (m_RayOrigin == null) return;
 
-            // Raycast atıyoruz
             bool hitSomething = Physics.Raycast(
                 m_RayOrigin.position,
                 m_RayOrigin.forward,
@@ -73,34 +67,81 @@ namespace LuduArtsCase.Runtime.Player
                 m_InteractableLayer
             );
 
-            IInteractable detectedInteractable = null;
+            BaseInteractable detected = null;
 
             if (hitSomething)
             {
-                // Collider üzerindeki IInteractable bileşenini al
-                detectedInteractable = m_HitInfo.collider.GetComponent<IInteractable>();
+                detected = m_HitInfo.collider.GetComponentInParent<BaseInteractable>();
             }
 
-            // Durum değişikliği kontrolü (Optimization: Sadece değişince event fırlat)
-            if (detectedInteractable != m_CurrentInteractable)
+            if (detected != m_CurrentInteractable)
             {
-                m_CurrentInteractable = detectedInteractable;
+                m_CurrentInteractable = detected;
                 OnInteractableChanged?.Invoke(m_CurrentInteractable);
+
+                // Obje değişirse hold işlemini sıfırla
+                ResetHold();
             }
         }
 
-        /// <summary>
-        /// Kullanıcı girdisini (E tuşu) dinler.
-        /// </summary>
         private void HandleInput()
         {
-            // İleride Input System'e çevrilebilir.
+            if (m_CurrentInteractable == null || !m_CurrentInteractable.CanInteract)
+            {
+                ResetHold();
+                return;
+            }
+
+            switch (m_CurrentInteractable.Type)
+            {
+                case InteractionType.Instant:
+                    HandleInstantInteraction();
+                    break;
+                case InteractionType.Hold:
+                    HandleHoldInteraction();
+                    break;
+            }
+        }
+
+        private void HandleInstantInteraction()
+        {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (m_CurrentInteractable != null && m_CurrentInteractable.CanInteract)
+                m_CurrentInteractable.OnInteract(gameObject);
+            }
+        }
+
+        private void HandleHoldInteraction()
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                m_IsHolding = true;
+                m_CurrentHoldTime += Time.deltaTime;
+
+                // Progress oranını hesapla (0.0 -> 1.0)
+                float progress = Mathf.Clamp01(m_CurrentHoldTime / m_CurrentInteractable.HoldDuration);
+                OnInteractionProgress?.Invoke(progress);
+
+                // Süre doldu mu?
+                if (m_CurrentHoldTime >= m_CurrentInteractable.HoldDuration)
                 {
                     m_CurrentInteractable.OnInteract(gameObject);
+                    ResetHold(); // İşlem bitince sıfırla
                 }
+            }
+            else
+            {
+                ResetHold();
+            }
+        }
+
+        private void ResetHold()
+        {
+            if (m_IsHolding || m_CurrentHoldTime > 0)
+            {
+                m_IsHolding = false;
+                m_CurrentHoldTime = 0f;
+                OnInteractionProgress?.Invoke(0f); // UI'ı sıfırla
             }
         }
 
