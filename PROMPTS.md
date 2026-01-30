@@ -53,7 +53,7 @@ PROMPTS.md ve README.md dosyalarının ilk taslaklarını oluşturdu.]
 
 **Prompt:**
 ```
-[Projenin Core sistemini kurmam lazım. `IInteractable` interface'i ve Raycast ile nesneleri algılayan bir `InteractionDetector` scripti gerekli.Özellikle `m_` prefix, region sıralaması ve XML dokümantasyon kurallarına %100 uyarak bu temel scriptleri hazırlar mısın?]
+[Projenin Core sistemini kurmam lazım. `IInteractable` interface'i ve Raycast ile nesneleri algılayan bir `InteractionDetector` scripti gerekli.Özellikle `m_` prefix, region sıralaması ve XML dokümantasyon kurallarına %100 uyarak bu temel scriptleri hazırla]
 ```
 
 **Alınan Cevap (Özet):**
@@ -73,9 +73,30 @@ PROMPTS.md ve README.md dosyalarının ilk taslaklarını oluşturdu.]
 
 ---
 
-## Prompt 3: ...
+## Prompt 3: [Base Class ve Door Implementasyonu]
 
-[Diğer promptlar için aynı formatı kullanın]
+**Araç:** [Gemini 3 Pro]
+**Tarih/Saat:** 2025-01-30 16:51
+
+**Prompt:**
+```
+[Core sistemi kurduk. Şimdi kod tekrarını önlemek için abstract bir `BaseInteractable` sınıfı oluşturup `IInteractable`'ı oradan implemente edelim. Sonrasında bunu miras alan basit bir `InteractableDoor` (aç/kapa mantığı olan) scripti yaz]
+```
+
+**Alınan Cevap (Özet):**
+```
+[ Asistan, `BaseInteractable` abstract sınıfını oluşturarak ortak field'ları (PromptMessage, IsInteractable) buraya taşıdı. 
+Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanarak yumuşak açılma/kapanma hareketi yapan `InteractableDoor` sınıfını hazırladı.]
+```
+
+**Nasıl Kullandım:**
+- [] Direkt kullandım
+- [x] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> [Her obje için aynı değişkenleri tekrar tekrar yazmamak (DRY prensibi) ve kapı mantığını hızlıca test edebilmek için inheritance yapısını kurdurttum.
+Üretilen kodda `IInteractable` arayüzündeki `OnInteract` metodunun dönüş tipi (`bool`) ile implementasyondaki tip (`void`) arasında bir uyuşmazlık vardı . Bu derleme hatasını gidermek için dönüş tipini düzelttim ve metodu başarı durumunu (`true`) dönecek şekilde güncelleyerek projeye entegre ettim.]
 
 ---
 
