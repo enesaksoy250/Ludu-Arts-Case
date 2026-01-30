@@ -199,6 +199,30 @@ Ardından bu sınıftan türeyen ve Update içinde Quaternion.Slerp kullanarak y
 
 ---
 
+## Prompt 8: Switch ve Event Sistemi
+
+**Araç:** Gemini 3 Pro
+**Tarih/Saat:** 2026-01-30 19.20
+
+**Prompt:**
+  Son etkileşilebilir nesne olan Switch için bir script yaz.
+  Toggle mantığı ile çalışsın.
+  UnityEvent kullanarak başka nesneleri  tetikleyebilsin.
+  Görsel olarak bir kolu aşağı yukarı döndürsün.
+
+**Alınan Cevap (Özet):**
+> Asistan, InteractableSwitch sınıfını hazırladı. UnityEvent yapısı sayesinde Switch'in ışıkları veya diğer objeleri Inspector üzerinden kontrol edebilmesini sağladı. Ayrıca kol animasyonu için Slerp rotasyonu eklendi.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Case'in Switch/Lever ve Event-based connection gereksinimlerini karşılamak için UnityEvent sistemini kullanan esnek bir yapı kurdum.
+
+---
+
 ## Genel Değerlendirme
 
 ### LLM'in En Çok Yardımcı Olduğu Alanlar
