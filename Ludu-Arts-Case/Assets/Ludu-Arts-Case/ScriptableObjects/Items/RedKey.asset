@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4444a5b1bb17e9748ae2528302d6d0d5, type: 3}
   m_Name: RedKey
   m_EditorClassIdentifier: Assembly-CSharp::LuduArtsCase.ScriptableObjects.Items.KeyDataSO
-  KeyName: Red Key
-  KeyId: key_red
+  m_KeyName: Red Key
+  m_KeyId: key_red
