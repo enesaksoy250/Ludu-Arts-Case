@@ -46,28 +46,30 @@ PROMPTS.md ve README.md dosyalarının ilk taslaklarını oluşturdu.]
 
 ---
 
-## Prompt 2: [Konu Başlığı]
+## Prompt 2: [Core Interaction Sisteminin Kurulması]
 
-**Araç:** [ChatGPT-4 / Claude / GitHub Copilot]
-**Tarih/Saat:** YYYY-MM-DD HH:MM
+**Araç:** [Gemini 3 Pro]
+**Tarih/Saat:** 2025-01-30 16:44
 
 **Prompt:**
 ```
-[Yazdığınız prompt]
+[Projenin Core sistemini kurmam lazım. `IInteractable` interface'i ve Raycast ile nesneleri algılayan bir `InteractionDetector` scripti gerekli.Özellikle `m_` prefix, region sıralaması ve XML dokümantasyon kurallarına %100 uyarak bu temel scriptleri hazırlar mısın?]
 ```
 
 **Alınan Cevap (Özet):**
 ```
-[Cevap özeti]
+[ Asistan  `IInteractable` arayüzünü ve `InteractionDetector` sınıfını hazırladı.
+> - Unity methodları ve eventler Region içine alındı.
+> - Raycast logic'i `InteractionDetector` içine kuruldu.]
 ```
 
 **Nasıl Kullandım:**
-- [ ] Direkt kullandım
+- [x] Direkt kullandım
 - [ ] Adapte ettim
 - [ ] Reddettim
 
 **Açıklama:**
-> [Açıklama]
+> [Temel mimariyi kurarken vakit kaybetmemek ve şirketin katı isimlendirme kurallarında hata yapmamak için standartlara uygun bir boilerplate istedim.]
 
 ---
 
