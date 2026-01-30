@@ -5,16 +5,18 @@
 
 ## Özet
 
+## Özet
+
 | Bilgi | Değer |
 |-------|-------|
-| Toplam prompt sayısı | X |
-| Kullanılan araçlar | ChatGPT / Claude / Copilot |
-| En çok yardım alınan konular | [liste] |
-| Tahmini LLM ile kazanılan süre | X saat |
+| Toplam prompt sayısı | 10 |
+| Kullanılan araçlar | Gemini |
+| En çok yardım alınan konular | 1. **Standartlara Uygun Kod Üretimi**<br>2. **Mimari Kararlar ve Refactoring**<br>3. **Statik Kod Analizi** |
+| Tahmini LLM ile kazanılan süre | 12 saat |
 
 ---
 
-## Prompt 1: [Konu Başlığı]
+## Prompt 1: [Case Analizi ve Proje Kurulumu]
 
 **Araç:** [Gemini 3 Pro]
 **Tarih/Saat:** 2025-01-30 16:16
@@ -41,8 +43,6 @@ PROMPTS.md ve README.md dosyalarının ilk taslaklarını oluşturdu.]
 **Açıklama:**
 > [Projeye başlarken yanlış bir mimari kurmamak ve şirketin katı isimlendirme kurallarını (naming conventions) gözden kaçırmamak için yapay zekadan bir analiz ve yol haritası istedim. Bu sayede klasör yapısını tek seferde doğru kurdum.]
 
-**Yapılan Değişiklikler (adapte ettiyseniz):**
-> [LLM cevabını nasıl değiştirdiğinizi açıklayın]
 
 ---
 
@@ -277,18 +277,21 @@ Ardından bu sınıftan türeyen ve Update içinde Quaternion.Slerp kullanarak y
 ## Genel Değerlendirme
 
 ### LLM'in En Çok Yardımcı Olduğu Alanlar
-1. [Alan 1]
-2. [Alan 2]
-3. [Alan 3]
+1. **Standartlara Uygun Kod Üretimi:** Özellikle `m_` prefix, Region kullanımı ve XML dokümantasyon gibi şirketin katı kurallarını her seferinde elle yazmak yerine, LLM'e bir kez tanımlayıp tüm scriptleri bu standartta ürettirmek büyük zaman kazandırdı.
+2. **Mimari Kararlar ve Refactoring:** Başlangıçta her objeye AudioSource eklemek gibi daha amatör yaklaşımları, "Merkezi Yönetim" (Singleton AudioManager) veya "Observer Pattern" (UI için) gibi daha profesyonel kalıplara dönüştürme konusunda beyin fırtınası yapmak çok faydalıydı.
+3. **Statik Kod Analizi:** Gözden kaçabilecek "Silent Bypass" (Loglanmayan hatalar) veya Encapsulation hatalarını (Public field kullanımı) tespit edip düzeltmek, projenin kod kalitesini artırdı.
 
 ### LLM'in Yetersiz Kaldığı Alanlar
-1. [Alan 1 - neden yetersiz kaldığı]
-2. [Alan 2]
+1. **Unity Editör ve Fiziksel Kurulumlar:** Kodları standartlara uygun yazsa da, Inspector üzerindeki referans atamaları (Assigning references), Layer ayarları veya Collider konfigürasyonları gibi "Scene" tarafındaki işleri yapamadığı için bu kısımlarda insan müdahalesi ve Unity bilgisi şarttı.<br>
+2.Bazen yapay zeka aracı halüsinasyon görebiliyo bahsettiğim şeyle alakalı olmayan cevaplar verebiliyor o yüzden detay vererek konuşmak çok önemli.<br>
+3.Bazen bazı detayları unutabiliyor ara ara hatırlatmak gerekiyor.
 
 ### LLM Kullanımı Hakkında Düşüncelerim
-> [Bu case boyunca LLM kullanarak neler öğrendiniz?
-> LLM'siz ne kadar sürede bitirebilirdiniz?
-> Gelecekte LLM'i nasıl daha etkili kullanabilirsiniz?]
+> **Neler Öğrendim:** Bu case çalışması, LLM'in sadece kod yazan bir araç değil, aynı zamanda mimari kararlarda yol gösteren bir "Mentor" olabileceğini öğretti. Özellikle Ludu Arts'ın katı isimlendirme ve kodlama standartlarına (Prefixler, Regionlar) uyum sağlama konusunda LLM'in dikkati, manuel kontrolden çok daha verimliydi. Ayrıca "Prompt Engineering"in, kod yazmaktan daha kritik bir yetenek olduğunu deneyimledim
+>
+> **Zaman Analizi:** LLM desteği olmasaydı, Core sistemin mimarisini kurmak, tüm scriptleri standartlara göre düzenlemek (Refactoring) ve detaylı dokümantasyonu hazırlamak tahminen **12-18 saat** sürerdi. LLM ile bu süreyi **6 saate** indirerek %50'den fazla verimlilik sağladım.
+>
+> **Gelecek Planım:** **Prompt Engineering (İstem Mühendisliği) yetkinliğimi geliştirerek; daha yapılandırılmış, bağlamı zengin ve net promptlar girmeyi**, bu sayede yapay zekadan ilk seferde en doğru çıktıyı alarak geliştirme sürecindeki iterasyonları (deneme-yanılma) minimuma indirmeyi planlıyorum.
 
 ---
 
