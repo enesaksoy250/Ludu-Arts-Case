@@ -100,7 +100,7 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 
 ---
 
-## Prompt 3: [Inventory ve Key System Entegrasyonu]
+## Prompt 4: [Inventory ve Key System Entegrasyonu]
 
 **Araç:** [Gemini 3 Pro]
 **Tarih/Saat:** 2025-01-30 17:20
@@ -126,6 +126,27 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 
 **Açıklama:**
 > [Case'in "Inventory" ve "Key + Locked Door Test" senaryolarını karşılamak için sistemi parçalara bölerek (Data, Logic, Interaction) implemente ettirdim.]
+
+---
+
+## Prompt 5: First Person Controller (Test İçin)
+
+**Araç:** Gemini 3 Pro
+**Tarih/Saat:** 2026-01-30 17:25
+
+**Prompt:**
+> Testleri yapabilmek için basit bir karakter hareket koduna ihtiyacım var. `CharacterController` kullanan, WASD ile yürüyen ve Mouse ile etrafa bakan basit bir script yaz. Standartlara uygun olsun.
+
+**Alınan Cevap (Özet):**
+> Asistan, `SimpleFirstPersonController` isminde, `CharacterController` component'ini kullanan temel bir hareket scripti sağladı. Mouse kilitleme (Cursor Lock) ve kamera rotasyon işlemleri eklendi.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Case'in ana odak noktası interaction sistemi olduğu için, hareket koduna vakit harcamamak adına hazır ve temiz bir çözüm istedim.
 
 ---
 
