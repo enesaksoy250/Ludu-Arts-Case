@@ -108,6 +108,7 @@ namespace LuduArtsCase.Runtime.Interactables
             m_IsOpen = !m_IsOpen;
             UpdateTargetRotation();
             m_PromptMessage = m_IsOpen ? "Close Door" : "Open Door";
+            PlaySound();
         }
 
         private void UpdateTargetRotation()

@@ -28,6 +28,7 @@ namespace LuduArtsCase.Runtime.Interactables
                 inventory.AddKey(m_KeyData);
 
                 // Anahtarı sahneden kaldır (yok et)
+                PlaySound();
                 Destroy(gameObject);
                 return true;
             }

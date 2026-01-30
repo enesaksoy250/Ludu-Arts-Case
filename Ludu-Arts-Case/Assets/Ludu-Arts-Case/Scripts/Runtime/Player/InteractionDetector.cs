@@ -67,19 +67,36 @@ namespace LuduArtsCase.Runtime.Player
                 m_InteractableLayer
             );
 
-            BaseInteractable detected = null;
+            // DEĞİŞİKLİK BURADA: IInteractable yerine BaseInteractable arıyoruz
+            BaseInteractable detectedInteractable = null;
 
             if (hitSomething)
             {
-                detected = m_HitInfo.collider.GetComponentInParent<BaseInteractable>();
+                // Parent kontrolü (Düzeltilmiş hali)
+                detectedInteractable = m_HitInfo.collider.GetComponentInParent<BaseInteractable>();
             }
 
-            if (detected != m_CurrentInteractable)
+            // Eğer odaklanılan nesne değiştiyse
+            if (detectedInteractable != m_CurrentInteractable)
             {
-                m_CurrentInteractable = detected;
+                // 1. Eski nesneye "Artık sana bakmıyorum" de
+                if (m_CurrentInteractable != null)
+                {
+                    m_CurrentInteractable.OnLoseFocus();
+                }
+
+                // Değişikliği kaydet
+                m_CurrentInteractable = detectedInteractable;
+
+                // 2. Yeni nesneye "Sana bakıyorum" de
+                if (m_CurrentInteractable != null)
+                {
+                    m_CurrentInteractable.OnFocus();
+                }
+
+                // Event fırlat (UI için)
                 OnInteractableChanged?.Invoke(m_CurrentInteractable);
 
-                // Obje değişirse hold işlemini sıfırla
                 ResetHold();
             }
         }

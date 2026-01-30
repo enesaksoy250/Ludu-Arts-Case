@@ -155,6 +155,9 @@ MonoBehaviour:
   m_IsInteractable: 1
   m_InteractionType: 0
   m_HoldDuration: 1
+  m_InteractSound: {fileID: 8300000, guid: 0ccbe2010f9c040498ac7b61a02ea1ac, type: 3}
+  m_Renderer: {fileID: 0}
+  m_HighlightColor: {r: 0.81960785, g: 0.7372549, b: 0, a: 1}
   m_KeyData: {fileID: 11400000, guid: d866a8f40f46ed14d97f686fc10a084b, type: 2}
 --- !u!135 &79058309
 SphereCollider:
@@ -299,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9815198, b: 0, a: 1}
+  m_Color: {r: 0.15538986, g: 0.8584906, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -555,6 +558,9 @@ MonoBehaviour:
   m_IsInteractable: 1
   m_InteractionType: 1
   m_HoldDuration: 2
+  m_InteractSound: {fileID: 8300000, guid: c614484bbb578824ca8920a4c31b89cd, type: 3}
+  m_Renderer: {fileID: 1886303719}
+  m_HighlightColor: {r: 0.8207547, g: 0.73800987, b: 0, a: 1}
   m_IsOpen: 0
   m_OpenAngle: 60
   m_LidTransform: {fileID: 2014531092}
@@ -570,6 +576,7 @@ GameObject:
   - component: {fileID: 767400797}
   - component: {fileID: 767400799}
   - component: {fileID: 767400798}
+  - component: {fileID: 767400800}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -687,6 +694,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &767400800
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767400796}
+  m_Enabled: 1
 --- !u!1 &767566555
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +831,9 @@ MonoBehaviour:
   m_IsInteractable: 1
   m_InteractionType: 0
   m_HoldDuration: 1
+  m_InteractSound: {fileID: 8300000, guid: 3475f9c36ea2253418b0adb505ca5695, type: 3}
+  m_Renderer: {fileID: 767566557}
+  m_HighlightColor: {r: 0.81960785, g: 0.7372549, b: 0, a: 1}
   m_IsOpen: 0
   m_OpenAngle: 0
   m_CloseAngle: 90
@@ -1250,7 +1268,7 @@ GameObject:
   - component: {fileID: 1213868125}
   - component: {fileID: 1213868124}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: Handle_Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1792,6 +1810,9 @@ MonoBehaviour:
   m_IsInteractable: 1
   m_InteractionType: 0
   m_HoldDuration: 1
+  m_InteractSound: {fileID: 0}
+  m_Renderer: {fileID: 1213868125}
+  m_HighlightColor: {r: 0.81960785, g: 0.7372549, b: 0, a: 1}
   m_IsOn: 0
   m_HandleTransform: {fileID: 1591667601}
   m_OnAngle: 45
@@ -1939,6 +1960,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886303716}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1956977959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1956977961}
+  - component: {fileID: 1956977960}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1956977960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956977959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1307ea522d1acb4aa8bfdd49509d63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LuduArtsCase.Runtime.Core.AudioManager
+--- !u!4 &1956977961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956977959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.48866, y: 0.4507, z: 1.85852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014531091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,3 +2252,4 @@ SceneRoots:
   - {fileID: 663689553}
   - {fileID: 1842830960}
   - {fileID: 2057173493}
+  - {fileID: 1956977961}

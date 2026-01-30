@@ -84,6 +84,7 @@ namespace LuduArtsCase.Runtime.Interactables
                 OnSwitchDeactivate?.Invoke();
                 Debug.Log("Switch Kapandı.");
             }
+            PlaySound();
         }
 
         private void UpdateTargetRotation()

@@ -71,6 +71,7 @@ namespace LuduArtsCase.Runtime.Interactables
             UpdateTargetRotation();
 
             Debug.Log("Sandık açıldı! (Ganimet sesi burada çalacak)");
+            PlaySound();
         }
 
         private void UpdateTargetRotation()

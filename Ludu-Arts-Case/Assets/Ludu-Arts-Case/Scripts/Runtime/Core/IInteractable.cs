@@ -23,5 +23,15 @@ namespace LuduArtsCase.Runtime.Core
         /// <param name="interactor">Etkileşimi başlatan obje (Genelde Player).</param>
         /// <returns>Etkileşim başarılı oldu mu?</returns>
         bool OnInteract(GameObject interactor);
+
+        /// <summary>
+        /// Oyuncu nesneye bakmaya başladığında çağrılır (Highlight için).
+        /// </summary>
+        void OnFocus();
+
+        /// <summary>
+        /// Oyuncu nesneden gözünü çektiğinde çağrılır.
+        /// </summary>
+        void OnLoseFocus();
     }
 }
