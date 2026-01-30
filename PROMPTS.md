@@ -53,7 +53,7 @@ PROMPTS.md ve README.md dosyalarının ilk taslaklarını oluşturdu.]
 
 **Prompt:**
 ```
-[Projenin Core sistemini kurmam lazım. `IInteractable` interface'i ve Raycast ile nesneleri algılayan bir `InteractionDetector` scripti gerekli.Özellikle `m_` prefix, region sıralaması ve XML dokümantasyon kurallarına %100 uyarak bu temel scriptleri hazırla]
+[Projenin Core sistemini kurmam lazım. IInteractable interface'i ve Raycast ile nesneleri algılayan bir InteractionDetector scripti gerekli.Özellikle `m_` prefix, region sıralaması ve XML dokümantasyon kurallarına %100 uyarak bu temel scriptleri hazırla]
 ```
 
 **Alınan Cevap (Özet):**
@@ -64,7 +64,7 @@ PROMPTS.md ve README.md dosyalarının ilk taslaklarını oluşturdu.]
 ```
 
 **Nasıl Kullandım:**
-- [x] Direkt kullandım
+- [x] Direkt kullandı
 - [ ] Adapte ettim
 - [ ] Reddettim
 
@@ -80,13 +80,13 @@ PROMPTS.md ve README.md dosyalarının ilk taslaklarını oluşturdu.]
 
 **Prompt:**
 ```
-[Core sistemi kurduk. Şimdi kod tekrarını önlemek için abstract bir `BaseInteractable` sınıfı oluşturup `IInteractable`'ı oradan implemente edelim. Sonrasında bunu miras alan basit bir `InteractableDoor` (aç/kapa mantığı olan) scripti yaz]
+[Core sistemi kurduk. Şimdi kod tekrarını önlemek için abstract bir BaseInteractable sınıfı oluşturup IInteractable'ı oradan implemente edelim. Sonrasında bunu miras alan basit bir InteractableDoor (aç/kapa mantığı olan) scripti yaz]
 ```
 
 **Alınan Cevap (Özet):**
 ```
-[ Asistan, `BaseInteractable` abstract sınıfını oluşturarak ortak field'ları (PromptMessage, IsInteractable) buraya taşıdı. 
-Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanarak yumuşak açılma/kapanma hareketi yapan `InteractableDoor` sınıfını hazırladı.]
+[ Asistan, BaseInteractable abstract sınıfını oluşturarak ortak field'ları (PromptMessage, IsInteractable) buraya taşıdı. 
+Ardından bu sınıftan türeyen ve Update içinde Quaternion.Slerp kullanarak yumuşak açılma/kapanma hareketi yapan InteractableDoor sınıfını hazırladı.]
 ```
 
 **Nasıl Kullandım:**
@@ -96,7 +96,7 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 
 **Açıklama:**
 > [Her obje için aynı değişkenleri tekrar tekrar yazmamak (DRY prensibi) ve kapı mantığını hızlıca test edebilmek için inheritance yapısını kurdurttum.
-Üretilen kodda `IInteractable` arayüzündeki `OnInteract` metodunun dönüş tipi (`bool`) ile implementasyondaki tip (`void`) arasında bir uyuşmazlık vardı . Bu derleme hatasını gidermek için dönüş tipini düzelttim ve metodu başarı durumunu (`true`) dönecek şekilde güncelleyerek projeye entegre ettim.]
+Üretilen kodda IInteractable arayüzündeki OnInteract metodunun dönüş tipi (bool) ile implementasyondaki tip (void) arasında bir uyuşmazlık vardı . Bu derleme hatasını gidermek için dönüş tipini düzelttim ve metodu başarı durumunu (true) dönecek şekilde güncelleyerek projeye entegre ettim.]
 
 ---
 
@@ -108,10 +108,10 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 **Prompt:**
 ```
 [Projeye "Simple Inventory" gereksinimlerini eklememiz gerekiyor. Şunları implemente et:
- 1. Anahtar verilerini tutacak bir `KeyDataSO` (ScriptableObject).
- 2. Oyuncuda duracak basit bir `PlayerInventory` scripti.
- 3. Yerden alınabilen `InteractableKey` sınıfı.
- 4. `InteractableDoor` scriptini "Lock/Unlock" mantığını destekleyecek şekilde güncelle (RequiredKey field'ı ve inventory kontrolü ekle).]
+  Anahtar verilerini tutacak bir KeyDataSO (ScriptableObject).
+  Oyuncuda duracak basit bir PlayerInventory scripti.
+  Yerden alınabilen InteractableKey sınıfı.
+  InteractableDoor scriptini Lock,Unlock mantığını destekleyecek şekilde güncelle.]
 ```
 
 **Alınan Cevap (Özet):**
@@ -157,13 +157,13 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 
 **Prompt:**
  "Hold" (basılı tutma) etkileşim türünü sisteme entegre etmemiz gerekiyor.
-  1. `InteractionType` enum'ı (Instant/Hold) oluştur.
-  2. `BaseInteractable` sınıfına `HoldDuration` ve `Type` ekle.
-  3. `InteractionDetector` scriptini, basılı tutma süresini sayacak ve dolduğunda etkileşimi tetikleyecek şekilde güncelle.
-  4. Bu sistemi kullanan bir `InteractableChest` scripti yaz (Açıldıktan sonra tekrar kapanmasın).
+   InteractionType enum'ı oluştur.
+  BaseInteractable sınıfına HoldDuration ve Type ekle.
+  InteractionDetector scriptini, basılı tutma süresini sayacak ve dolduğunda etkileşimi tetikleyecek şekilde güncelle.
+  Bu sistemi kullanan bir InteractableChest scripti yaz (Açıldıktan sonra tekrar kapanmasın).
 
 **Alınan Cevap (Özet):**
-> Asistan, Core sistemde gerekli refactor işlemlerini yaparak `InteractionDetector`'a zamanlayıcı (timer) mantığı ekledi. Sandık (Chest) için basılı tutarak açılan ve tek seferlik çalışan bir script sağladı. Ayrıca UI Progress Bar için gerekli event altyapısını kurdu.
+> Asistan, Core sistemde gerekli refactor işlemlerini yaparak InteractionDetectora zamanlayıcı mantığı ekledi. Sandık için basılı tutarak açılan ve tek seferlik çalışan bir script sağladı. Ayrıca UI Progress Bar için gerekli event altyapısını kurdu.
 
 **Nasıl Kullandım:**
 - [x] Direkt kullandım
@@ -172,6 +172,30 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 
 **Açıklama:**
 > Core sistemi "Instant" ve "Hold" olarak ikiye ayırarak, case'in en önemli gereksinimlerinden birini esnek bir yapıda çözdüm.
+
+---
+
+## Prompt 7: UI Feedback Sistemi (Prompt ve Progress Bar)
+
+**Araç:** Gemini 3 Pro
+**Tarih/Saat:** 2026-01-30 19.00
+
+**Prompt:**
+ Oyuncuya görsel geri bildirim vermek için bir UI sistemi kurmamız gerekiyor.
+   InteractionDetector eventlerini dinleyen bir InteractionUI scripti yaz.
+   OnInteractableChanged tetiklenince ekranda "Press E to Open" gibi dinamik bir yazı göster.
+   OnInteractionProgress tetiklenince bir Image barını doldur.
+
+**Alınan Cevap (Özet):**
+> Asistan, Observer pattern kullanarak dedektörden gelen sinyalleri UI elemanlarına bağlayan InteractionUI scriptini sağladı. SetActive ile paneli gizleyip açan ve fillAmount ile barı dolduran yapı kuruldu.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Kullanıcı deneyimi (UX) için etkileşim durumlarını görselleştirmek şarttı. Event-based bir yapı ile Detector ve UI kodlarını birbirinden bağımsız tuttum.
 
 ---
 
