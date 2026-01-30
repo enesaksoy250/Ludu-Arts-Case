@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7caa2e362399dc746b044325f1c3ef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LuduArtsCase.Runtime.Interactables.InteractableKey
-  m_PromptMessage: Interact
+  m_PromptMessage: Key
   m_IsInteractable: 1
   m_InteractionType: 0
   m_HoldDuration: 1
@@ -1810,7 +1810,7 @@ MonoBehaviour:
   m_IsInteractable: 1
   m_InteractionType: 0
   m_HoldDuration: 1
-  m_InteractSound: {fileID: 0}
+  m_InteractSound: {fileID: 8300000, guid: a6dfa68a8e5bc7948b512e5491639fa1, type: 3}
   m_Renderer: {fileID: 1213868125}
   m_HighlightColor: {r: 0.81960785, g: 0.7372549, b: 0, a: 1}
   m_IsOn: 0

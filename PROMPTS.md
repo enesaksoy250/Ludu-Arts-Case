@@ -223,6 +223,57 @@ Ardından bu sınıftan türeyen ve Update içinde Quaternion.Slerp kullanarak y
 
 ---
 
+## Prompt 9: Bonus Özellikler (Highlight ve SFX)
+
+**Araç:** Gemini 3 Pro
+**Tarih/Saat:** 2026-01-30 19.55
+
+**Prompt:**
+> Projeye bonus puan getirecek iki özellik ekleyelim:
+.  Oyuncu nesneye baktığında  nesnenin rengi değişsin , bakmayı bırakınca  eski rengine dönsün.
+   Nesnelerle etkileşime girildiğinde ses çalsın.
+ 
+> Bunun için `IInteractable` arayüzünü güncelle ve `BaseInteractable` sınıfına gerekli düzenlemeyi yap.
+
+**Alınan Cevap (Özet):**
+> Asistan, `IInteractable` arayüzüne `OnFocus` ve `OnLoseFocus` metotlarını ekledi. `InteractionDetector` scriptini bu metotları tetikleyecek şekilde güncelledi. `BaseInteractable` sınıfına basit bir renk değiştirme (Highlight) ve ses çalma (`PlaySound`) altyapısı kurdu.
+
+**Nasıl Kullandım:**
+- [] Direkt kullandım
+- [x] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Kullanıcıya hangi nesneyle etkileşime gireceğini belli etmek  ve eylemi doğrulamak için bonus özellikleri "Base Class" seviyesinde çözdüm. Böylece tüm nesneler otomatik olarak bu özelliklere sahip oldu.Fakat yapay zeka her objeye(Chest,Door vs) birer Audio Source ekleyerek sistemi kurdu."Separation of Concerns" prensibi gereği ses yönetimini nesnelerden ayırıp merkezi bir yöneticiye devrettim. Bu, projenin ölçeklenebilirliğini artırdı. 
+
+**Yapılan Değişiklikler (adapte ettiyseniz):**
+> [Her objeye audio source eklemek yerine ses yönetimini ortak bir merkezden yürütmek için AudioManager sınıfını yazdırdım]
+---
+
+## Prompt 10: Code Standards Review ve Refactoring
+
+**Araç:** Gemini 3 Pro
+**Tarih/Saat:** 2026-01-30 20:20
+
+**Prompt:**
+> Projenin kodlarını son kez `CSharp_Coding_Conventions.md` ve diğer Ludu Arts standart dökümanlarına göre denetle. Gözden kaçan "Silent Bypass", "Encapsulation" veya "Naming" hataları varsa tespit et ve düzeltilmiş versiyonlarını sun.
+
+**Alınan Cevap (Özet):**
+> Asistan kodları inceledi ve şu düzeltmeleri önerdi:
+> 1. `KeyDataSO` içindeki public değişkenler `m_` prefixli private field ve public property yapısına (Encapsulation) çevrildi.
+> 2. `InteractionDetector` içindeki "Silent Bypass" (sessiz hata) durumu giderildi; eksik referanslar için `Debug.LogError` eklendi.
+> 3. `BaseInteractable` içindeki override metodlara eksik olan XML dokümantasyonları (`<inheritdoc/>`) eklendi.
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> Teslim öncesi kod kalitesini artırmak ve şirketin kod standartlarına %100 uyum sağlamak için statik kod analizi yaptırdım ve önerilen kritik düzeltmeleri uyguladım.
+
+---
+
 ## Genel Değerlendirme
 
 ### LLM'in En Çok Yardımcı Olduğu Alanlar

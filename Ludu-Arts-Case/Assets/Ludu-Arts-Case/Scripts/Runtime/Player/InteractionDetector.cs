@@ -36,8 +36,19 @@ namespace LuduArtsCase.Runtime.Player
 
         #region Unity Methods
 
+        private void Awake()
+        {
+            // Silent bypass önleme: Referans eksikse hata ver
+            if (m_RayOrigin == null)
+            {
+                Debug.LogError($"{name} üzerinde Ray Origin atanmamış! Lütfen Inspector'dan atayın.");
+                enabled = false; // Scripti durdur
+            }
+        }
+
         private void Update()
         {
+            if (m_RayOrigin == null) return;
             DetectInteractable();
             HandleInput();
         }

@@ -58,6 +58,7 @@ namespace LuduArtsCase.Runtime.Interactables
 
         #region Methods
 
+        /// <inheritdoc/>
         public abstract bool OnInteract(GameObject interactor);
 
         // --- GÜNCELLENEN SES METODU ---
@@ -78,6 +79,7 @@ namespace LuduArtsCase.Runtime.Interactables
             }
         }
 
+        /// <inheritdoc/>
         public virtual void OnFocus()
         {
             if (m_Renderer != null)
@@ -86,6 +88,7 @@ namespace LuduArtsCase.Runtime.Interactables
             }
         }
 
+        /// <inheritdoc/>
         public virtual void OnLoseFocus()
         {
             if (m_Renderer != null)
