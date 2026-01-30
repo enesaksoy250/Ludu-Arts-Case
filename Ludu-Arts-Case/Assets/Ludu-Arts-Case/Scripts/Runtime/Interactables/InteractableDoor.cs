@@ -1,29 +1,40 @@
 using UnityEngine;
+using LuduArtsCase.Runtime.Player; // Inventory erişimi için
+using LuduArtsCase.ScriptableObjects.Items; // KeyDataSO için
 
 namespace LuduArtsCase.Runtime.Interactables
 {
     /// <summary>
-    /// Basit açılıp kapanan kapı mekanizması.
+    /// Açılıp kapanabilen, kilitlenebilen kapı sınıfı.
     /// </summary>
     public class InteractableDoor : BaseInteractable
     {
         #region Fields
 
         [Header("Door Settings")]
-        [Tooltip("Kapı şu an açık mı?")]
         [SerializeField] private bool m_IsOpen = false;
-
-        [Tooltip("Açılma açısı.")]
         [SerializeField] private float m_OpenAngle = 90f;
-
-        [Tooltip("Kapanma açısı (Genelde 0).")]
         [SerializeField] private float m_CloseAngle = 0f;
-
-        [Tooltip("Kapı hareket hızı.")]
         [SerializeField] private float m_AnimationSpeed = 5.0f;
 
-        // Hedef rotasyonu tutan değişken
+        [Header("Lock Settings")]
+        [Tooltip("Bu kapı kilitli mi?")]
+        [SerializeField] private bool m_IsLocked = false;
+
+        [Tooltip("Kilidi açmak için gereken anahtar (Boşsa kilit açılmaz).")]
+        [SerializeField] private KeyDataSO m_RequiredKey;
+
+        [Tooltip("Kilitliyken gösterilecek mesaj.")]
+        [SerializeField] private string m_LockedMessage = "Locked - Key Required";
+
         private Quaternion m_TargetRotation;
+
+        #endregion
+
+        #region Properties
+
+        // Eğer kilitliyse Locked mesajını, değilse standart mesajı göster
+        public override string InteractionPrompt => m_IsLocked ? m_LockedMessage : base.InteractionPrompt;
 
         #endregion
 
@@ -32,11 +43,16 @@ namespace LuduArtsCase.Runtime.Interactables
         private void Start()
         {
             UpdateTargetRotation();
+
+            // Başlangıç durumuna göre prompt ayarla
+            if (!m_IsLocked)
+            {
+                m_PromptMessage = m_IsOpen ? "Close Door" : "Open Door";
+            }
         }
 
         private void Update()
         {
-            // Yumuşak geçiş (Lerp/Slerp)
             if (Quaternion.Angle(transform.localRotation, m_TargetRotation) > 0.1f)
             {
                 transform.localRotation = Quaternion.Slerp(
@@ -53,26 +69,50 @@ namespace LuduArtsCase.Runtime.Interactables
 
         public override bool OnInteract(GameObject interactor)
         {
+            // Eğer kilitliyse, anahtarı kontrol et
+            if (m_IsLocked)
+            {
+                return TryUnlock(interactor);
+            }
+
+            // Kilitli değilse normal aç/kapa
             ToggleDoor();
-            return true; // Etkileşim başarılı
+            return true;
         }
 
-        /// <summary>
-        /// Kapı durumunu tersine çevirir (Açıksa kapatır, kapalıysa açar).
-        /// </summary>
+        private bool TryUnlock(GameObject interactor)
+        {
+            PlayerInventory inventory = interactor.GetComponent<PlayerInventory>();
+
+            if (inventory != null && inventory.HasKey(m_RequiredKey))
+            {
+                // Anahtar var, kilidi aç
+                m_IsLocked = false;
+                Debug.Log("Kapı kilidi açıldı!");
+
+                // Kilidi açınca direkt kapıyı da açalım (Design tercihi)
+                ToggleDoor();
+                return true;
+            }
+            else
+            {
+                // Anahtar yok veya inventory bulunamadı
+                Debug.Log("Anahtar gerekli!");
+                // İleride buraya "Locked" sesi veya efekti eklenebilir
+                return false;
+            }
+        }
+
         private void ToggleDoor()
         {
             m_IsOpen = !m_IsOpen;
             UpdateTargetRotation();
-
-            // Opsiyonel: Mesajı güncelle
             m_PromptMessage = m_IsOpen ? "Close Door" : "Open Door";
         }
 
         private void UpdateTargetRotation()
         {
             float targetAngle = m_IsOpen ? m_OpenAngle : m_CloseAngle;
-            // Sadece Y ekseninde döndürüyoruz (Kapı menteşesi)
             m_TargetRotation = Quaternion.Euler(0, targetAngle, 0);
         }
 

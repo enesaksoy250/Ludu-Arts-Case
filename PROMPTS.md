@@ -100,6 +100,35 @@ Ardından bu sınıftan türeyen ve `Update` içinde `Quaternion.Slerp` kullanar
 
 ---
 
+## Prompt 3: [Inventory ve Key System Entegrasyonu]
+
+**Araç:** [Gemini 3 Pro]
+**Tarih/Saat:** 2025-01-30 17:20
+
+**Prompt:**
+```
+[Projeye "Simple Inventory" gereksinimlerini eklememiz gerekiyor. Şunları implemente et:
+ 1. Anahtar verilerini tutacak bir `KeyDataSO` (ScriptableObject).
+ 2. Oyuncuda duracak basit bir `PlayerInventory` scripti.
+ 3. Yerden alınabilen `InteractableKey` sınıfı.
+ 4. `InteractableDoor` scriptini "Lock/Unlock" mantığını destekleyecek şekilde güncelle (RequiredKey field'ı ve inventory kontrolü ekle).]
+```
+
+**Alınan Cevap (Özet):**
+```
+[ Asistan; ScriptableObject tabanlı anahtar tanımlama sistemini, PlayerInventory yapısını ve InteractableKey sınıfını oluşturdu. Mevcut Door scriptini güncelleyerek `TryUnlock` mekanizmasını ekledi.]
+```
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [] Adapte ettim
+- [] Reddettim
+
+**Açıklama:**
+> [Case'in "Inventory" ve "Key + Locked Door Test" senaryolarını karşılamak için sistemi parçalara bölerek (Data, Logic, Interaction) implemente ettirdim.]
+
+---
+
 ## Genel Değerlendirme
 
 ### LLM'in En Çok Yardımcı Olduğu Alanlar
